@@ -1,0 +1,289 @@
+tut - 2 code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flexbox and Grid Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>My Website</h1>
+
+    <h2>Flexbox Example</h2>
+
+    <div class="flex-container">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+    </div>
+
+    <h2>Grid Example</h2>
+
+    <div class="grid-container">
+        <div class="box">Item 1</div>
+        <div class="box">Item 2</div>
+        <div class="box">Item 3</div>
+        <div class="box">Item 4</div>
+    </div>
+
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    gap: 10px;
+}
+
+.box {
+    padding: 30px;
+    background-color: lightblue;
+    text-align: center;
+}
+
+.flex-container .box {
+    flex: 1;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.grid-container .box {
+    background-color: lightgreen;
+}
+
+tut - 3 code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Tutorial</title>
+</head>
+
+<body>
+
+    <h1 id="title">Student Information</h1>
+
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <button id="submitBtn">Submit</button>
+
+    <p id="message"></p>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+let button = document.getElementById("submitBtn");
+
+button.addEventListener("click", function() {
+
+    let name = document.getElementById("name").value;
+
+    if (name === "") {
+
+        document.getElementById("message").innerText =
+            "Please enter your name.";
+
+    } else {
+
+        document.getElementById("message").innerText =
+            "Welcome, " + name + "!";
+
+    }
+
+});
+
+Tut - 4 code
+
+import React, { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [name, setName] = useState("");
+  const [submittedName, setSubmittedName] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setSubmittedName(name);
+  }
+
+  return (
+    <div className="app">
+
+      <header className="header">
+        <h1>Student Information App</h1>
+      </header>
+
+      <main className="main">
+        <div className="card">
+
+          <h2>Student Information</h2>
+
+          <label>Student Name</label>
+
+          <input
+            type="text"
+            placeholder="Enter Student Name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+
+          <button onClick={handleSubmit}>
+            Submit
+          </button>
+
+          {submittedName && (
+            <div className="student-result">
+              <h3>Student Details</h3>
+              <p>Name: {submittedName}</p>
+            </div>
+          )}
+
+        </div>
+      </main>
+
+      <footer className="footer">
+        <p>© 2026 Student Information App</p>
+      </footer>
+
+    </div>
+  );
+}
+
+export default App;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+}
+
+/* HEADER */
+
+.header {
+  background-color: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+.header h1 {
+  font-size: 28px;
+}
+
+/* MAIN */
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+
+.card {
+  width: 400px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.card label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.card input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.card button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #1d4ed8;
+}
+
+/* RESULT */
+
+.student-result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #eeeeee;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.student-result h3 {
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: #222222;
+  color: white;
+  text-align: center;
+  padding: 18px;
+}
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+<body>
+  <div id="root"></div>
+</body>
