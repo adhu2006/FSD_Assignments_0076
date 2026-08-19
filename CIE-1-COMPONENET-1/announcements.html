@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Announcements - School Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="images/school-logo.svg" alt="Apex Logo" class="sidebar-logo">
+        <div>
+          <h2>Apex Public</h2>
+          <p>School System</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-category">Main Menu</div>
+        <a href="index.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="students.html" class="nav-link">
+          <span class="nav-icon">👨‍🎓</span>
+          <span>Students</span>
+        </a>
+        <a href="attendance.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Attendance</span>
+        </a>
+        <a href="marks.html" class="nav-link">
+          <span class="nav-icon">📝</span>
+          <span>Marks & Grades</span>
+        </a>
+        <a href="teachers.html" class="nav-link">
+          <span class="nav-icon">👨‍🏫</span>
+          <span>Teachers</span>
+        </a>
+        <a href="announcements.html" class="nav-link active">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar" id="user-avatar-initial">A</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Administrator</div>
+            <span class="user-role-tag" id="user-display-role">ADMIN</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle Sidebar">☰</button>
+          <h1 class="page-title">School Notice Board</h1>
+        </div>
+        <div class="topbar-right admin-only">
+          <button type="button" class="btn btn-primary" onclick="openAnnouncementModal()">
+            📢 Post Announcement
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        
+        <!-- Category Filter Tabs & Search -->
+        <div class="action-bar mb-3">
+          <div class="announcement-category-tabs" id="category-tabs">
+            <button type="button" class="tab-btn active" data-category="all">All Notices</button>
+            <button type="button" class="tab-btn" data-category="Exam">📝 Exams</button>
+            <button type="button" class="tab-btn" data-category="Event">🎉 Events</button>
+            <button type="button" class="tab-btn" data-category="Holiday">🏖 Holidays</button>
+            <button type="button" class="tab-btn" data-category="General">📢 General</button>
+          </div>
+
+          <div class="search-box" style="min-width: 250px;">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="announcement-search" class="form-control" placeholder="Search notices by title or keywords...">
+          </div>
+        </div>
+
+        <!-- Announcements Grid Container -->
+        <section class="announcements-grid" id="announcements-container">
+          <!-- Populated via JavaScript -->
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: Post Announcement (Admin) -->
+  <div class="modal-backdrop" id="announcement-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>📢 Post New Announcement</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('announcement-modal')">&times;</button>
+      </div>
+      <form id="announcement-form" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="announcement-title">Notice Title <span class="text-danger">*</span></label>
+            <input type="text" id="announcement-title" class="form-control" placeholder="e.g. Annual Sports Day" required>
+            <small class="error-text" id="ann-title-error">Please enter announcement title.</small>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="announcement-category">Category <span class="text-danger">*</span></label>
+              <select id="announcement-category" class="form-control" required>
+                <option value="Event">Event</option>
+                <option value="Exam">Exam</option>
+                <option value="Holiday">Holiday</option>
+                <option value="General">General</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="announcement-date">Date <span class="text-danger">*</span></label>
+              <input type="date" id="announcement-date" class="form-control" required>
+              <small class="error-text" id="ann-date-error">Please select a valid date.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="announcement-desc">Description / Content <span class="text-danger">*</span></label>
+            <textarea id="announcement-desc" class="form-control" rows="4" placeholder="Enter detailed notice information..." required></textarea>
+            <small class="error-text" id="ann-desc-error">Please provide a description.</small>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('announcement-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Announcement</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/announcements.js"></script>
+</body>
+</html>

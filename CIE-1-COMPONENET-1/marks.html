@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marks & Grades - School Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="images/school-logo.svg" alt="Apex Logo" class="sidebar-logo">
+        <div>
+          <h2>Apex Public</h2>
+          <p>School System</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-category">Main Menu</div>
+        <a href="index.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="students.html" class="nav-link">
+          <span class="nav-icon">👨‍🎓</span>
+          <span>Students</span>
+        </a>
+        <a href="attendance.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Attendance</span>
+        </a>
+        <a href="marks.html" class="nav-link active">
+          <span class="nav-icon">📝</span>
+          <span>Marks & Grades</span>
+        </a>
+        <a href="teachers.html" class="nav-link">
+          <span class="nav-icon">👨‍🏫</span>
+          <span>Teachers</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar" id="user-avatar-initial">A</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Administrator</div>
+            <span class="user-role-tag" id="user-display-role">ADMIN</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle Sidebar">☰</button>
+          <h1 class="page-title">Academic Marks & Grading</h1>
+        </div>
+        <div class="topbar-right admin-only teacher-only">
+          <button type="button" class="btn btn-primary" onclick="openMarksModal('add')">
+            ➕ Record / Edit Marks
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        
+        <!-- Summary Cards -->
+        <section class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon blue">📝</div>
+            <div class="stat-details">
+              <h3 id="marks-total-records">0</h3>
+              <p>Evaluated Students</p>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon green">🏆</div>
+            <div class="stat-details">
+              <h3 id="marks-highest-score">0%</h3>
+              <p>Highest Percentage</p>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon amber">📈</div>
+            <div class="stat-details">
+              <h3 id="marks-avg-score">0%</h3>
+              <p>Class Average</p>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-icon purple">🎯</div>
+            <div class="stat-details">
+              <h3 id="marks-pass-rate">0%</h3>
+              <p>Pass Rate (Grade A+ to D)</p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Search and Filter Bar -->
+        <div class="card mb-4">
+          <div class="card-body" style="padding: 15px 20px;">
+            <div class="action-bar" style="margin-bottom: 0;">
+              <div class="search-filter-group">
+                <div class="search-box">
+                  <span class="search-icon">🔍</span>
+                  <input type="text" id="marks-search-input" class="form-control" placeholder="Search by student name, ID or class...">
+                </div>
+
+                <select id="marks-class-filter" class="form-control" style="width: auto; min-width: 140px;">
+                  <option value="all">All Classes</option>
+                  <option value="10th">10th Class</option>
+                  <option value="11th">11th Class</option>
+                  <option value="12th">12th Class</option>
+                </select>
+
+                <select id="marks-grade-filter" class="form-control" style="width: auto; min-width: 130px;">
+                  <option value="all">All Grades</option>
+                  <option value="A+">Grade A+</option>
+                  <option value="A">Grade A</option>
+                  <option value="B">Grade B</option>
+                  <option value="C">Grade C</option>
+                  <option value="D">Grade D</option>
+                  <option value="F">Grade F (Fail)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marks Table -->
+        <div class="card">
+          <div class="table-responsive">
+            <table class="custom-table" id="marks-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Class</th>
+                  <th>Mathematics (100)</th>
+                  <th>Science (100)</th>
+                  <th>English (100)</th>
+                  <th>Computer Science (100)</th>
+                  <th>Total (400)</th>
+                  <th>Percentage</th>
+                  <th>Grade</th>
+                  <th style="text-align: right;" class="admin-only teacher-only">Action</th>
+                </tr>
+              </thead>
+              <tbody id="marks-table-body">
+                <!-- Populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: Enter / Edit Marks -->
+  <div class="modal-backdrop" id="marks-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="marks-modal-title">Record Student Marks</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('marks-modal')">&times;</button>
+      </div>
+      <form id="marks-form" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="marks-student-select">Select Student <span class="text-danger">*</span></label>
+            <select id="marks-student-select" class="form-control" required>
+              <option value="">-- Choose Student --</option>
+              <!-- Filled with available students -->
+            </select>
+            <small class="error-text" id="marks-student-error">Please select a student.</small>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="marks-maths">Mathematics (0 - 100) <span class="text-danger">*</span></label>
+              <input type="number" id="marks-maths" class="form-control marks-calc-input" min="0" max="100" placeholder="e.g. 85" required>
+              <small class="error-text" id="maths-error">Enter marks between 0 and 100.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="marks-science">Science (0 - 100) <span class="text-danger">*</span></label>
+              <input type="number" id="marks-science" class="form-control marks-calc-input" min="0" max="100" placeholder="e.g. 90" required>
+              <small class="error-text" id="science-error">Enter marks between 0 and 100.</small>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="marks-english">English (0 - 100) <span class="text-danger">*</span></label>
+              <input type="number" id="marks-english" class="form-control marks-calc-input" min="0" max="100" placeholder="e.g. 80" required>
+              <small class="error-text" id="english-error">Enter marks between 0 and 100.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="marks-cs">Computer Science (0 - 100) <span class="text-danger">*</span></label>
+              <input type="number" id="marks-cs" class="form-control marks-calc-input" min="0" max="100" placeholder="e.g. 95" required>
+              <small class="error-text" id="cs-error">Enter marks between 0 and 100.</small>
+            </div>
+          </div>
+
+          <!-- Real-Time Computed Preview Card -->
+          <div style="background: #f1f5f9; border-radius: 8px; padding: 14px; margin-top: 10px; border: 1px dashed #cbd5e1;">
+            <h4 style="font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--primary-dark);">⚡ Automatic Calculation Preview:</h4>
+            <div style="display: flex; justify-content: space-around; text-align: center;">
+              <div>
+                <small class="text-muted">Total Marks</small>
+                <div style="font-size: 18px; font-weight: bold;" id="preview-total">0 / 400</div>
+              </div>
+              <div>
+                <small class="text-muted">Percentage</small>
+                <div style="font-size: 18px; font-weight: bold; color: var(--primary);" id="preview-percent">0%</div>
+              </div>
+              <div>
+                <small class="text-muted">Grade</small>
+                <div style="font-size: 18px; font-weight: bold;" id="preview-grade">-</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('marks-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Marks</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/marks.js"></script>
+</body>
+</html>

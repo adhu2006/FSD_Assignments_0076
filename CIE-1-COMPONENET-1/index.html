@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Public School - Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar Overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Navigation Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="images/school-logo.svg" alt="Apex Logo" class="sidebar-logo">
+        <div>
+          <h2>Apex Public</h2>
+          <p>School System</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-category">Main Menu</div>
+        <a href="index.html" class="nav-link active">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="students.html" class="nav-link">
+          <span class="nav-icon">👨‍🎓</span>
+          <span>Students</span>
+        </a>
+        <a href="attendance.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Attendance</span>
+        </a>
+        <a href="marks.html" class="nav-link">
+          <span class="nav-icon">📝</span>
+          <span>Marks & Grades</span>
+        </a>
+        <a href="teachers.html" class="nav-link">
+          <span class="nav-icon">👨‍🏫</span>
+          <span>Teachers</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar" id="user-avatar-initial">A</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Administrator</div>
+            <span class="user-role-tag" id="user-display-role">ADMIN</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle Sidebar">☰</button>
+          <h1 class="page-title">Dashboard Overview</h1>
+        </div>
+        <div class="topbar-right">
+          <span id="current-date" class="text-muted" style="font-size: 13px; font-weight: 500;"></span>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+        
+        <!-- Welcome Banner -->
+        <div class="card mb-4" style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none;">
+          <div class="card-body" style="padding: 22px 25px;">
+            <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 6px;" id="welcome-message">Welcome to Apex School Dashboard</h2>
+            <p style="font-size: 14px; opacity: 0.9;">Manage student records, record daily attendance, evaluate marks, and publish school notices with ease.</p>
+          </div>
+        </div>
+
+        <!-- Metric Statistics Cards -->
+        <section class="stats-grid">
+          <!-- Total Students -->
+          <article class="stat-card">
+            <div class="stat-icon blue">👨‍🎓</div>
+            <div class="stat-details">
+              <h3 id="stat-total-students">0</h3>
+              <p>Total Students</p>
+            </div>
+          </article>
+
+          <!-- Total Teachers -->
+          <article class="stat-card">
+            <div class="stat-icon purple">👨‍🏫</div>
+            <div class="stat-details">
+              <h3 id="stat-total-teachers">0</h3>
+              <p>Total Teachers</p>
+            </div>
+          </article>
+
+          <!-- Present Today -->
+          <article class="stat-card">
+            <div class="stat-icon green">✅</div>
+            <div class="stat-details">
+              <h3 id="stat-present-today">0</h3>
+              <p>Present Today</p>
+            </div>
+          </article>
+
+          <!-- Absent Today -->
+          <article class="stat-card">
+            <div class="stat-icon red">❌</div>
+            <div class="stat-details">
+              <h3 id="stat-absent-today">0</h3>
+              <p>Absent Today</p>
+            </div>
+          </article>
+
+          <!-- Average Marks -->
+          <article class="stat-card">
+            <div class="stat-icon amber">📈</div>
+            <div class="stat-details">
+              <h3 id="stat-avg-marks">0%</h3>
+              <p>Average Marks</p>
+            </div>
+          </article>
+        </section>
+
+        <!-- Quick Actions Row (Admin/Teacher) -->
+        <div class="card mb-4 admin-only">
+          <div class="card-header">
+            <h3>⚡ Quick Actions</h3>
+          </div>
+          <div class="card-body" style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="students.html" class="btn btn-primary">➕ Add Student</a>
+            <a href="attendance.html" class="btn btn-success">📋 Take Attendance</a>
+            <a href="marks.html" class="btn btn-outline-primary">📊 Record Marks</a>
+            <a href="announcements.html" class="btn btn-secondary">📢 Post Announcement</a>
+          </div>
+        </div>
+
+        <!-- 2 Column Section: Recent Students & Recent Announcements -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+          
+          <!-- Recent Students Table -->
+          <div class="card">
+            <div class="card-header">
+              <h3>👨‍🎓 Recent Students</h3>
+              <a href="students.html" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-recent-students">
+                  <!-- Populated via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recent Announcements List -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📢 Recent Announcements</h3>
+              <a href="announcements.html" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body" id="dashboard-recent-announcements" style="padding: 15px;">
+              <!-- Populated via JavaScript -->
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

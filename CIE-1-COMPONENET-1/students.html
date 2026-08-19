@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students - School Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="images/school-logo.svg" alt="Apex Logo" class="sidebar-logo">
+        <div>
+          <h2>Apex Public</h2>
+          <p>School System</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-category">Main Menu</div>
+        <a href="index.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="students.html" class="nav-link active">
+          <span class="nav-icon">👨‍🎓</span>
+          <span>Students</span>
+        </a>
+        <a href="attendance.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Attendance</span>
+        </a>
+        <a href="marks.html" class="nav-link">
+          <span class="nav-icon">📝</span>
+          <span>Marks & Grades</span>
+        </a>
+        <a href="teachers.html" class="nav-link">
+          <span class="nav-icon">👨‍🏫</span>
+          <span>Teachers</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-avatar" id="user-avatar-initial">A</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Administrator</div>
+            <span class="user-role-tag" id="user-display-role">ADMIN</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle Sidebar">☰</button>
+          <h1 class="page-title">Student Management</h1>
+        </div>
+        <div class="topbar-right">
+          <button type="button" class="btn btn-primary admin-only" onclick="openStudentModal('add')">
+            ➕ Add Student
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        
+        <!-- Search and Filter Bar -->
+        <div class="card mb-4">
+          <div class="card-body" style="padding: 15px 20px;">
+            <div class="action-bar" style="margin-bottom: 0;">
+              <div class="search-filter-group">
+                <div class="search-box">
+                  <span class="search-icon">🔍</span>
+                  <input type="text" id="student-search-input" class="form-control" placeholder="Search by ID, Name, Class or Section...">
+                </div>
+
+                <select id="class-filter" class="form-control" style="width: auto; min-width: 140px;">
+                  <option value="all">All Classes</option>
+                  <option value="10th">10th Class</option>
+                  <option value="11th">11th Class</option>
+                  <option value="12th">12th Class</option>
+                </select>
+
+                <select id="gender-filter" class="form-control" style="width: auto; min-width: 130px;">
+                  <option value="all">All Genders</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+
+              <div class="text-muted" style="font-size: 13px;">
+                Showing <strong id="student-count-display">0</strong> students
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Table Card -->
+        <div class="card">
+          <div class="table-responsive">
+            <table class="custom-table" id="students-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Class</th>
+                  <th>Section</th>
+                  <th>Gender</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Attendance</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="students-table-body">
+                <!-- Populated via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Student -->
+  <div class="modal-backdrop" id="student-form-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="student-modal-title">Add New Student</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('student-form-modal')">&times;</button>
+      </div>
+      <form id="student-form" novalidate>
+        <div class="modal-body">
+          <input type="hidden" id="form-mode" value="add">
+          <input type="hidden" id="original-student-id" value="">
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="student-id-input">Student ID <span class="text-danger">*</span></label>
+              <input type="text" id="student-id-input" class="form-control" placeholder="e.g. STD111" required>
+              <small class="error-text" id="id-error">Student ID is required and must be unique.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="student-name-input">Student Name <span class="text-danger">*</span></label>
+              <input type="text" id="student-name-input" class="form-control" placeholder="e.g. Rohan Sharma" required>
+              <small class="error-text" id="name-error">Please enter the student's name.</small>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="student-dob-input">Date of Birth <span class="text-danger">*</span></label>
+              <input type="date" id="student-dob-input" class="form-control" required>
+              <small class="error-text" id="dob-error">Please select a valid date of birth.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="student-gender-input">Gender <span class="text-danger">*</span></label>
+              <select id="student-gender-input" class="form-control" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <small class="error-text" id="gender-error">Please select gender.</small>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="student-class-input">Class <span class="text-danger">*</span></label>
+              <select id="student-class-input" class="form-control" required>
+                <option value="">Select Class</option>
+                <option value="10th">10th</option>
+                <option value="11th">11th</option>
+                <option value="12th">12th</option>
+              </select>
+              <small class="error-text" id="class-error">Please select class.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="student-section-input">Section <span class="text-danger">*</span></label>
+              <select id="student-section-input" class="form-control" required>
+                <option value="A">Section A</option>
+                <option value="B">Section B</option>
+                <option value="C">Section C</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="student-email-input">Email Address <span class="text-danger">*</span></label>
+              <input type="email" id="student-email-input" class="form-control" placeholder="name@example.com" required>
+              <small class="error-text" id="email-error">Please enter a valid email address.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="student-phone-input">Phone Number <span class="text-danger">*</span></label>
+              <input type="tel" id="student-phone-input" class="form-control" placeholder="10 digit number" maxlength="10" required>
+              <small class="error-text" id="phone-error">Please enter a valid 10-digit phone number.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('student-form-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="save-student-btn">Save Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: View Student Details -->
+  <div class="modal-backdrop" id="student-view-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>👨‍🎓 Student Profile Details</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('student-view-modal')">&times;</button>
+      </div>
+      <div class="modal-body" id="student-profile-content">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('student-view-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/students.js"></script>
+</body>
+</html>
