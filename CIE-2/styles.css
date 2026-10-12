@@ -1,0 +1,604 @@
+/* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+/* =========================
+   BODY
+   ========================= */
+
+body {
+    /* Sets the font used for the webpage */
+    font-family: 'PT Sans', sans-serif;
+
+    /* Sets the background color */
+    background-color: #252529;
+
+    /* Removes default margin provided by browser */
+    margin: 0;
+
+    /* Sets text color to white */
+    color: #fff;
+
+    /* Sets space between lines of text */
+    line-height: 1.6;
+}
+
+
+/* =========================
+   ALL LINKS
+   ========================= */
+
+a {
+    /* Removes underline from links */
+    text-decoration: none;
+
+    /* Sets link color */
+    color: #ccc;
+}
+
+
+/* =========================
+   SHOWCASE / HOME SECTION
+   ========================= */
+
+#showcase {
+    /* Removes margin */
+    margin: 0;
+
+    /* Removes padding */
+    padding: 0;
+
+    /* Adds SPORTS.jpg as background image */
+    background: url(SPORTS.jpg) no-repeat center/cover;
+
+    /* Makes the section take full screen width */
+    width: 100%;
+
+    /* 100vh means 100% of browser screen height */
+    height: 100vh;
+
+    /* Allows positioning of elements inside */
+    position: relative;
+
+    /* Hides vertical overflow */
+    overflow-y: hidden;
+}
+
+
+/* =========================
+   ABOUT US
+   ========================= */
+
+#aboutus {
+    /* Takes full screen width */
+    width: 100%;
+
+    /* Height is 60% of viewport height */
+    height: 60vh;
+}
+
+
+/* Adds top space to showcase container */
+#showcase .container {
+    margin-top: 25vh;
+}
+
+
+/* Styles the container inside About Us */
+#aboutus .container {
+    /* Adds small top margin */
+    margin-top: 1vh;
+
+    /* Adds 5% margin on right */
+    margin-right: 5%;
+}
+
+
+/* Main SPORTS heading */
+#showcase h1 {
+    /* 4rem makes the heading large */
+    font-size: 4rem;
+
+    /* Removes bottom margin */
+    margin-bottom: 0;
+}
+
+
+/* About Us heading */
+#aboutus h2 {
+    /* Sets heading size */
+    font-size: 2.5rem;
+
+    /* Removes bottom margin */
+    margin-bottom: 0;
+
+    /* Aligns text to the left */
+    text-align: left;
+}
+
+
+/* About Us paragraph */
+#aboutus p {
+    /* Sets paragraph font size */
+    font-size: 2rem;
+
+    /* Aligns text to left */
+    text-align: left;
+
+    /* Removes bottom margin */
+    margin-bottom: 0;
+
+    /* Removes right padding */
+    padding-right: 0%;
+
+    /* Justifies content to the left */
+    justify-content: left;
+}
+
+
+/* =========================
+   ABOUT US BUTTON
+   ========================= */
+
+#aboutus button {
+    /* Sets button text size */
+    font-size: 1rem;
+
+    /* Adds space inside the button */
+    padding: .7rem 2rem;
+
+    /* Uses the main color variable */
+    background: var(--main-color);
+
+    /* Makes button corners rounded */
+    border-radius: 2rem;
+
+    /* Adds glowing shadow */
+    box-shadow: 0 0 1rem var(--main-color);
+
+    /* Sets text color */
+    color: var(--second-bg-color);
+
+    /* Adds space between letters */
+    letter-spacing: .1rem;
+
+    /* Makes text bold */
+    font-weight: 800;
+
+    /* Makes animation smooth */
+    transition: .5s ease;
+}
+
+
+/* Button when mouse is placed over it */
+#aboutus button:hover {
+    /* Removes the shadow */
+    box-shadow: none;
+}
+
+
+/* About Us image */
+#aboutus img {
+    /* Image width is 40% */
+    width: 40%;
+
+    /* Image height is 60% of viewport height */
+    height: 60vh;
+
+    /* Rounds image corners */
+    border-radius: 3rem;
+
+    /* Moves image to the right */
+    float: right;
+
+    /* Removes bottom margin */
+    margin-bottom: 0%;
+
+    /* Adds 5% right margin */
+    margin-right: 5%;
+}
+
+
+/* Showcase second heading */
+#showcase h2 {
+    /* Sets font size */
+    font-size: 2rem;
+}
+
+
+/* =========================
+   NAVIGATION BAR
+   ========================= */
+
+nav {
+    /* Navigation height */
+    height: 40px;
+
+    /* Navigation width */
+    width: 100%;
+
+    /* Dark background */
+    background-color: #333;
+
+    /* Text color */
+    color: rgb(51, 34, 34);
+
+    /* Keeps navigation fixed at the top */
+    position: fixed;
+}
+
+
+/* Navigation unordered list */
+nav ul {
+    /* Removes margin */
+    margin: 0;
+
+    /* Removes padding */
+    padding: 0;
+}
+
+
+/* Navigation list items */
+nav li {
+    /* Places items in one line */
+    display: inline;
+
+    /* Moves items to the left */
+    float: left;
+}
+
+
+/* Navigation links */
+nav a {
+    /* Allows width and padding to work */
+    display: inline-block;
+
+    /* Each link has 100px width */
+    width: 100px;
+
+    /* Centers link text */
+    text-align: center;
+
+    /* Removes underline */
+    text-decoration: none;
+
+    /* Adds 10px top and bottom padding */
+    padding: 10px 0;
+
+    /* Sets text color */
+    color: #eee;
+}
+
+
+/* Navigation item when mouse is over it */
+nav li:hover {
+    /* Changes background color */
+    background-color: #444;
+}
+
+
+/* =========================
+   CONTAINER
+   ========================= */
+
+.container {
+    /* Maximum width of container */
+    max-width: 1180px;
+
+    /* Centers text */
+    text-align: center;
+
+    /* Centers the container horizontally */
+    margin: 0 auto;
+
+    /* Adds left and right space */
+    padding: 0 5.5rem;
+}
+
+
+/* =========================
+   LEAD PARAGRAPH
+   ========================= */
+
+.lead {
+    /* Sets paragraph font size */
+    font-size: 1.3rem;
+}
+
+
+/* =========================
+   HEADING
+   ========================= */
+
+.heading {
+    /* Centers heading */
+    text-align: center;
+
+    /* Makes heading large */
+    font-size: 4rem;
+}
+
+
+/* =========================
+   CSS VARIABLES
+   ========================= */
+
+:root {
+    /* Main background color */
+    --bg-color: #1f242d;
+
+    /* Secondary background color */
+    --second-bg-color: #323946;
+
+    /* Main text color */
+    --text-color: #fff;
+
+    /* Main highlight color */
+    --main-color: #0ef;
+}
+
+
+/* =========================
+   ALL SECTIONS
+   ========================= */
+
+section {
+    /* Minimum height is 100% of viewport */
+    min-height: 100vh;
+
+    /* Adds space around section */
+    padding: 5rem 5% 2rem;
+}
+
+
+/* =========================
+   BUTTON
+   ========================= */
+
+.btn {
+    /* Allows padding and width */
+    display: inline-block;
+
+    /* Adds space inside button */
+    padding: .7rem 2rem;
+
+    /* Uses main color */
+    background: var(--main-color);
+
+    /* Makes corners rounded */
+    border-radius: 2rem;
+
+    /* Adds glowing shadow */
+    box-shadow: 0 0 1rem var(--main-color);
+
+    /* Sets text size */
+    font-size: 1rem;
+
+    /* Sets text color */
+    color: var(--second-bg-color);
+
+    /* Adds space between letters */
+    letter-spacing: .1rem;
+
+    /* Makes text bold */
+    font-weight: 800;
+
+    /* Makes hover animation smooth */
+    transition: .5s ease;
+}
+
+
+/* Button hover effect */
+.btn:hover {
+    /* Removes the shadow */
+    box-shadow: none;
+}
+
+
+/* =========================
+   SERVICES HEADING
+   ========================= */
+
+.services h2 {
+    /* Adds space below heading */
+    margin-bottom: 1rem;
+
+    /* Adds space above heading */
+    margin-top: 0.5rem;
+}
+
+
+/* =========================
+   SERVICES CONTAINER
+   ========================= */
+
+.services-container {
+    /* Uses Flexbox */
+    display: flex;
+
+    /* Places items horizontally */
+    flex-direction: row;
+
+    /* Centers items horizontally */
+    justify-content: center;
+
+    /* Centers items vertically */
+    align-items: center;
+
+    /* Allows items to move to next line */
+    flex-wrap: wrap;
+
+    /* Adds small space between boxes */
+    gap: .5rem;
+}
+
+
+/* =========================
+   SERVICE BOX
+   ========================= */
+
+.services-container .services-box {
+    /* Controls size of service boxes */
+    flex: 1 1 30rem;
+
+    /* Sets box background color */
+    background: var(--second-bg-color);
+
+    /* Adds space inside box */
+    padding: 1rem .5rem 1rem;
+
+    /* Makes corners rounded */
+    border-radius: 2rem;
+
+    /* Centers text */
+    text-align: center;
+
+    /* Adds border */
+    border: .2rem solid var(--bg-color);
+
+    /* Makes hover animation smooth */
+    transition: .5s ease;
+}
+
+
+/* Service box hover */
+.services-container .services-box:hover {
+    /* Changes border to main color */
+    border-color: var(--main-color);
+
+    /* Slightly increases box size */
+    transform: scale(1.02);
+}
+
+
+/* Service images */
+.services-box img {
+    /* Image width */
+    width: 90%;
+
+    /* Image height */
+    height: 30vh;
+
+    /* Rounds image corners */
+    border-radius: 2rem;
+}
+
+
+/* Service heading */
+.services-box h3 {
+    /* Sets heading size */
+    font-size: 2rem;
+}
+
+
+/* Service paragraph */
+.services-box p {
+    /* Sets paragraph size */
+    font-size: 2rem;
+
+    /* Adds top and bottom margin */
+    margin: .7rem 0 2rem;
+}
+
+
+/* Services section */
+.services {
+    /* Removes top margin */
+    margin-top: 0%;
+}
+
+
+/* =========================
+   HTML
+   ========================= */
+
+html {
+    /* Sets root font size */
+    font-size: 70%;
+
+    /* Hides horizontal scrolling */
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   BODY - SECOND STYLE
+   ========================= */
+
+body {
+    /* Uses background variable */
+    background: var(--bg-color);
+
+    /* Uses text color variable */
+    color: var(--text-color);
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer .footer-cols {
+    /* Uses CSS Grid */
+    display: grid;
+
+    /* Adds 20px gap between columns */
+    grid-gap: 20px;
+
+    /* Creates 4 equal columns */
+    grid-template-columns: repeat(4, 1fr);
+
+    /* Adds padding */
+    padding: 2rem;
+
+    /* Aligns footer text to left */
+    text-align: left;
+
+    /* Sets font size */
+    font-size: 16px;
+
+    /* Footer width */
+    width: 100%;
+
+    /* Footer height */
+    height: 30vh;
+}
+
+
+/* Footer lists */
+footer .footer-cols ul {
+    /* Removes bullet points */
+    list-style: none;
+}
+
+
+/* First item of each footer list */
+footer .footer-cols ul li:first-child {
+    /* Makes heading larger */
+    font-size: 1.5rem;
+
+    /* Adds space below heading */
+    padding-bottom: 0.5rem;
+
+    /* Adds a bottom border */
+    border-bottom: #444 solid 2px;
+
+    /* Adds space below border */
+    margin-bottom: 1rem;
+}
+
+
+/* =========================
+   FOOTER BOTTOM
+   ========================= */
+
+footer .footer-bottom {
+    /* Dark background */
+    background-color: #333;
+
+    /* Adds space inside */
+    padding: 1rem;
+
+    /* Centers copyright text */
+    text-align: center;
+}
